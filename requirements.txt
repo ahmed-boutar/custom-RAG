@@ -1,0 +1,8 @@
+python-pptx==1.0.2
+PyMuPDF==1.25.3
+python-dotenv==1.0.1
+numpy==1.26.3
+openai
+pinecone
+boto3
+streamlit
