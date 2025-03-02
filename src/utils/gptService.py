@@ -1,10 +1,9 @@
+'''
+This module contains the GPTService class which is responsible for interacting with the OpenAI API 
+to generate answers to questions based on provided contexts and to build the prompt based on context'''
 import os 
 from openai import OpenAI
-
-
 import dotenv
-
-
 
 dotenv.load_dotenv()
 
@@ -35,6 +34,10 @@ class GPTService():
         return prompt
 
     def generate_answer(self, prompt):
+        '''
+        Generate an answer to a question based on a provided prompt
+        '''
+        # Generate response from GPT-4o model
         response = self.client.chat.completions.create(model="gpt-4o",
         messages=[
             {"role": "system", "content": "You are a helpful educational assistant."},

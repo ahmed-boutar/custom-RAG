@@ -1,3 +1,5 @@
+'''
+This script is responsible for ingesting and parsing documents. It currently supports pptx files.'''
 from pptx import Presentation
 import fitz #PyMuPDF
 import os 

@@ -1,13 +1,14 @@
+'''
+This module is responsible for preprocessing and chunking text data.'''
 import re
-
-
-
-
 class TextPreprocesser():
     def __init__(self):
         pass
 
     def clean_text(self, text):
+        '''
+        Clean text by removing extra spaces, newlines, and tabs
+        '''
         print("Cleaning text...\n")
         # Replace multiple newlines and tabs with a single space
         text = re.sub(r'[\n\t]+', ' ', text)  
@@ -16,15 +17,16 @@ class TextPreprocesser():
         print("Cleaning complete.\n")
         return text
     
-    def chunk_text(self, documents, chunk_size=500, overlap=100):
+    def chunk_text(self, documents):
+        '''
+        Chunk text into smaller pieces. Very naive implementation.
+        '''
         print("Chunking text...\n")
         if not isinstance(documents, list):
             temp = []
             temp.append(documents)
             documents = temp
         
-        
-
         chunked_documents = []
         for doc in documents:
             if doc["type"] == "pptx":
@@ -42,17 +44,5 @@ class TextPreprocesser():
                         })
         print("Chunking complete.\n")
         return chunked_documents
-    
-    
 
-# def main():
-#     DATA_DIR = "../data"
-#     ingesterAndParser = IngesterAndParser()
-#     textPreprocesser = TextPreprocesser()
-#     extracted_text = ingesterAndParser.process_documents(DATA_DIR)
-#     chunked_text = textPreprocesser.chunk_text(extracted_text)
-#     print(chunked_text)
-
-# if __name__ == "__main__":
-#     main()
     

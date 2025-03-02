@@ -1,3 +1,7 @@
+'''
+This file contains the EmbedAndSearch class which is responsible 
+for generating embeddings for the chunks of text and then searching 
+for the most similar chunks to a given query based on cosine similarity'''
 import os
 from openai import OpenAI
 from dotenv import load_dotenv
@@ -5,9 +9,6 @@ import numpy as np
 
 
 load_dotenv()
-
-
-
 class EmbedAndSearch():
     def __init__(self):
         self.client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
@@ -33,16 +34,13 @@ class EmbedAndSearch():
         return np.dot(vec1, vec2) / (np.linalg.norm(vec1) * np.linalg.norm(vec2))
 
 
-    def semantic_search(self, query, embeddings, top_k=5):
+    def semantic_search(self, query, embeddings, top_k=10):
         response = self.client.embeddings.create(input=query, 
         model="text-embedding-ada-002")
         
         query_embedding = response.data[0].embedding
-        # ["data"][0]["embedding"]
 
-        
         results = []
-        print(f'AHHHHH \n {(embeddings[0])}')
         for embedding in embeddings:
             similarity = self.cosine_similarity(query_embedding, embedding["values"])
             results.append({

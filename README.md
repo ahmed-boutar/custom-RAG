@@ -1,21 +1,4 @@
-# Custom RAG 
+[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/a87xfYGP)
+[![Open in Codespaces](https://classroom.github.com/assets/launch-codespace-2972f46106e565e64193e422d61a12cf1da4916b45550586e14ef0a7c637dd04.svg)](https://classroom.github.com/open-in-codespaces?assignment_repo_id=18360896)
 
-This project is an attempt to create a custom RAG system, where I can upload my lecture slides and have an LLM answer my questions with content from the slides and sources referencing each slide. The LLM used is gpt-4o. 
 
-This repo us currently being used for a hosted streamlit app. 
-
-# How it works 
- 
- When you upload a pptx or a collection of powerpoint files, the app will process each file and:
- - Parses all the slides to extract the text 
- - Chunks the text (you can look into preprocessAndChunk.py to learn about the chunking strategy => very naive since I haven't used any library and tried to do it on my own)
- - Generates embeddings from the text using gpt-4o
- - Saves the embeddings to a pinecone index 
- 
- When you prompt the LLM for information, it will:
- - Turn the prompt into an embedding 
- - Retrieve all of the embeddings from pinecone (I am using my own semantic search with cosine similarity. Just wanted to implement it for practice)
- - Return the top 5 most similar embeddings 
- - Extract the text that represents the embeddings 
- - Add the text to the LLM prompt
- - Generate a response and includes the sources (file and slide the information comes from)
